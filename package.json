@@ -1,6 +1,6 @@
 {
   "name": "pre-flight",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Ensure all core dependencies are up to date before `npm start`",
   "main": "index.js",
   "scripts": {
