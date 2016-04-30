@@ -25,7 +25,7 @@ module.exports = function checkDependency(cwd, name, version, optional) {
     console.error(colors.red('Required dependency has a bad semver string in it\'s package.json: ' + name + ' (' + modulePackageJSON.version + ')'));
     return false;
   }
-  if (semver.satisfies(modulePackageJSON.version, version)) {
+  if (!semver.validRange(version) || semver.satisfies(modulePackageJSON.version, version)) {
     return true;
   }
   console.error(colors.red('Required dependency does not match the required version: ' + name));
