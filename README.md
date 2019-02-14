@@ -8,7 +8,7 @@ before running `npm start`.
 Simply add this script to your `package.json` and let us handle the rest!
 
 ```json
-"scripts": {
+"scripts": {aa
   "prestart": "pre-flight"
 }
 ```
