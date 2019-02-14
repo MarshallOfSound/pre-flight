@@ -4,7 +4,7 @@ var path = require('path');
 
 var checkDependency = require('./checkDependency');
 
-module.exports = function runPreFlight(cwd, silent) {
+module.exports = function runPreFlight(cwd, silent, stamp) {
   if (!silent) console.info(colors.cyan('Starting pre-flight checks'));
 
   if (!fs.existsSync(path.resolve(cwd + '/package.json'))) {
@@ -41,7 +41,13 @@ module.exports = function runPreFlight(cwd, silent) {
 
   if (allGood) {
     console.log(colors.green('Dependencies are all up to date, looking good!'));
+    if (stamp) {
+      fs.writeFileSync(stamp, 'pre-flight-stamp');
+    }
   } else {
+    if (stamp && fs.existsSync(stamp)) {
+      fs.unlinkSync(stamp);
+    }
     process.exit(1);
   }
 }

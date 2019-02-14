@@ -13,9 +13,10 @@ program
   .version(require('./package.json').version)
   .option('-s, --silent', 'Runs pre-flight checks silently until failure')
   .option('--directory <path>', 'Sets the directory of the package.json to check', resolvePath)
+  .option('--stamp <path>', 'Outputs a file indicating success, will not output the file on failure', resolvePath)
   .parse(process.argv);
 
 program.directory = program.directory || process.cwd();
 program.silent = program.silent || false;
 
-preFlight(program.directory, program.silent)
+preFlight(program.directory, program.silent, program.stamp)
